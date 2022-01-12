@@ -1,0 +1,38 @@
+
+
+<table mat-table [dataSource]="sortedTickets">
+    <tr>
+        <ng-container matColumnDef="depTime">
+            <th mat-header-cell *matHeaderCellDef> Departing Time </th>
+            <td mat-cell *matCellDef="let ticket"> {{getTimeString(ticket.departure.time)}} </td>
+          </ng-container>
+        <ng-container matColumnDef="depSttn">
+            <th mat-header-cell *matHeaderCellDef> Departing Station </th>
+            <td mat-cell *matCellDef="let ticket"> {{ticket.departure.code}}: {{ticket.departure.name}}  </td>
+          </ng-container>
+        <ng-container matColumnDef="arrTime">
+            <th mat-header-cell *matHeaderCellDef> Arriving Time </th>
+            <td mat-cell *matCellDef="let ticket"> {{getTimeString(ticket.arrival.time)}} </td>
+          </ng-container>
+        <ng-container matColumnDef="arrSttn">
+            <th mat-header-cell *matHeaderCellDef> Arriving Station </th>
+            <td mat-cell *matCellDef="let ticket"> {{ticket.arrival.code}}: {{ticket.arrival.name}}  </td>
+          </ng-container>
+        <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> Price </th>
+            <td mat-cell *matCellDef="let ticket"> {{ticket.adultPrice}} <br> {{ticket.childPrice}} </td>
+          </ng-container>
+        <ng-container matColumnDef="travelTime">
+            <th mat-header-cell *matHeaderCellDef> Travel Time </th>
+            <td mat-cell *matCellDef="let ticket"> {{getTimeString(ticket.travelTime)}} </td>
+          </ng-container>
+        <ng-container matColumnDef="ultDest">
+            <th mat-header-cell *matHeaderCellDef> Ultimate Destination </th>
+            <td mat-cell *matCellDef="let ticket"> {{ticket.ultDestination}} </td>
+          </ng-container>
+    </tr>
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let myRowData; columns: columns"></tr>
+</table>
+
+<button (click)="switchSort()">{{sortByTime ? "Sort By Price" : "Sort By Time"}}</button>
